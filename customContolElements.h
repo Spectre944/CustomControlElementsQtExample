@@ -181,5 +181,38 @@ private:
 
 };
 
+class CPopupNotification : public QWidget{
+
+    Q_OBJECT
+
+public:
+
+    CPopupNotification(QWidget *parent = nullptr);
+    ~CPopupNotification() override;
+
+    void exec(QPoint pos = QPoint(-1, -1));
+    void exec(QRect expt, bool vertical = false, QPoint pos = QPoint(-1, -1));
+
+signals:
+
+
+
+private:
+
+
+    QGridLayout *gridLayout;
+    QFrame *frame;
+    QGridLayout *gridLayout_2;
+    QLabel *labelTopic;
+    QLabel *label;
+    QLabel *labelTextCont;
+    QLabel *labelTimeNot;
+
+    QRect window_rect;
+    int window_height = 0; // 窗口高度，每次打开都更新一次
+
+
+};
+
 
 #endif // CUSTOMCONTOLELEMENTS_H

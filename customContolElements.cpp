@@ -430,3 +430,103 @@ CMessageItem::~CMessageItem()
 {
 
 }
+
+//--------------------------------------------------------------------------------------------------------
+//  POPUP NOTIFICATION
+//--------------------------------------------------------------------------------------------------------
+
+CPopupNotification::CPopupNotification(QWidget *parent)
+{
+    this->setObjectName("customFrameWindowMsg");
+    this->setStyleSheet(parent->styleSheet());
+
+    setWindowFlag(Qt::Popup, true);
+
+    //For adjust size window
+    QScreen *screen = QGuiApplication::primaryScreen();
+    window_rect = screen->availableGeometry();
+    window_height = window_rect.height();
+
+    gridLayout = new QGridLayout(parent);
+    gridLayout->setSpacing(0);
+    gridLayout->setContentsMargins(0, 0, 0, 0);
+
+    frame = new QFrame(parent);
+    frame->setObjectName(QString::fromUtf8("frame"));
+    frame->setFrameShape(QFrame::StyledPanel);
+    frame->setFrameShadow(QFrame::Raised);
+
+    gridLayout_2 = new QGridLayout(frame);
+    gridLayout_2->setHorizontalSpacing(40);
+    gridLayout_2->setVerticalSpacing(0);
+    gridLayout_2->setContentsMargins(20, 0, 0, 0);
+
+    labelTopic = new QLabel("Topic",frame);
+    labelTopic->setObjectName(QString::fromUtf8("label_2"));
+
+    gridLayout_2->addWidget(labelTopic, 0, 1, 1, 1);
+
+    label = new QLabel("ico",frame);
+    label->setObjectName(QString::fromUtf8("label"));
+    label->setMinimumSize(QSize(50, 50));
+    label->setMaximumSize(QSize(50, 50));
+
+    gridLayout_2->addWidget(label, 1, 0, 1, 1);
+
+    labelTextCont = new QLabel("Content\nSAdasfsdfsfsdfsdfs fsdfdfvsfdfvsfvsfsdfsf",frame);
+    labelTextCont->setObjectName(QString::fromUtf8("labelTextCont"));
+
+    gridLayout_2->addWidget(labelTextCont, 1, 1, 1, 1);
+
+    labelTimeNot = new QLabel("Time",frame);
+    labelTimeNot->setObjectName(QString::fromUtf8("labelTimeNot"));
+
+    gridLayout_2->addWidget(labelTimeNot, 2, 1, 1, 1);
+
+
+    gridLayout->addWidget(frame, 0, 0, 1, 1);
+
+    setLayout(gridLayout);
+}
+
+CPopupNotification::~CPopupNotification()
+{
+
+}
+
+void CPopupNotification::exec(QPoint pos)
+{
+    if (pos == QPoint(-1,-1))
+         pos = QCursor::pos();
+     QPoint originPos = pos; // 不包含像素偏移的原始点
+     gridLayout->setEnabled(true);
+     gridLayout->activate(); // 先调整所有控件大小
+     this->adjustSize();
+
+     // setAttribute(Qt::WA_DontShowOnScreen); // 会触发 setMouseGrabEnabled 错误
+     // show();
+     // hide(); // 直接显示吧
+     // setAttribute(Qt::WA_DontShowOnScreen, false);
+
+     int x = pos.x() + 1;
+     int y = pos.y() + 1;
+     int w = width() + 1;
+     int h = height() + 1;
+     QRect avai = window_rect; // 屏幕大小
+
+     // 如果超过范围，则调整位置
+     if (x + w > avai.right())
+         x = avai.right() - w;
+     if (y + h > avai.bottom())
+         y = avai.bottom() - h;
+     if (x >= w && pos.x() + w > avai.right())
+         x = originPos.x() - w;
+     if (y >= h && pos.y() + h > avai.bottom())
+         y = originPos.y() - h;
+
+     // 移动窗口
+     move(QPoint(x, y));
+
+     QWidget::show();
+     setFocus();
+}

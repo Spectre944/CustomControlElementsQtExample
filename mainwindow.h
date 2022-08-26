@@ -37,6 +37,8 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_pushButton_4_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -56,6 +58,7 @@ private:
     CContextMenu *cMenu;
     CFilterFrame *cFilter;
     CMessageFrame *cMessage;
+    CPopupNotification *cPopup;
 
 };
 #endif // MAINWINDOW_H

@@ -468,11 +468,11 @@ QCheckBox::item:selected {
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QPushButton" name="pushButton">
+          <item row="1" column="1">
+           <widget class="QPushButton" name="pushButton_2">
             <property name="minimumSize">
              <size>
-              <width>200</width>
+              <width>50</width>
               <height>50</height>
              </size>
             </property>
@@ -483,7 +483,7 @@ QCheckBox::item:selected {
              </size>
             </property>
             <property name="text">
-             <string>Показ. чекбокс фрейм</string>
+             <string>Добав. сообщ.</string>
             </property>
            </widget>
           </item>
@@ -506,11 +506,11 @@ QCheckBox::item:selected {
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QPushButton" name="pushButton_2">
+          <item row="0" column="0">
+           <widget class="QPushButton" name="pushButton">
             <property name="minimumSize">
              <size>
-              <width>50</width>
+              <width>200</width>
               <height>50</height>
              </size>
             </property>
@@ -521,7 +521,30 @@ QCheckBox::item:selected {
              </size>
             </property>
             <property name="text">
-             <string>Добав. сообщ.</string>
+             <string>Показ. чекбокс фрейм</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label">
+            <property name="minimumSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>17</width>
+              <height>17</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 0, 0);
+border-radius: 8px;</string>
+            </property>
+            <property name="text">
+             <string/>
             </property>
            </widget>
           </item>

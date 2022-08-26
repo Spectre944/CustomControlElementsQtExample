@@ -72,6 +72,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     cMessage = new CMessageFrame(ui->centralwidget);
 
+    cPopup = new CPopupNotification(ui->centralwidget);
+
 
 
 
@@ -172,5 +174,15 @@ void MainWindow::on_pushButton_2_clicked()
     CMessageItem *msgLable4 = new CMessageItem(this,"Charlie","\tNow save your profile/save! Profit!!!","12:03");
 
     cMessage->addMsg(msgLable4);
+}
+
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    //get coordinates of mouse to show new windows on this cooridnates
+    int x = ui->pushButton->cursor().pos().x();
+    int y = ui->pushButton->cursor().pos().y();
+
+    cPopup->exec(QPoint(x,y));
 }
 
