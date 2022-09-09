@@ -18,6 +18,8 @@ HEADERS += \
     mainwindow.h
 
 FORMS += \
+    ColorPallete.ui \
+    ColorPattern.ui \
     MessageFrame.ui \
     PopupNorification.ui \
     form.ui \

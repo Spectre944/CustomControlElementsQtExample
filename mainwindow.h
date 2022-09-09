@@ -59,6 +59,7 @@ private:
     CFilterFrame *cFilter;
     CMessageFrame *cMessage;
     CPopupNotification *cPopup;
+    CColorPallete *cColor;
 
 };
 #endif // MAINWINDOW_H

@@ -530,3 +530,363 @@ void CPopupNotification::exec(QPoint pos)
      QWidget::show();
      setFocus();
 }
+
+
+//--------------------------------------------------------------------------------------------------------
+//  COLOR PALLETE
+//--------------------------------------------------------------------------------------------------------
+
+CColorPallete::CColorPallete(QWidget *parent)
+{
+
+    if (parent->objectName().isEmpty())
+                parent->setObjectName(QString::fromUtf8("centralWidget"));
+
+    this->setStyleSheet(parent->styleSheet());
+    this->resize(787, 642);
+    gridLayout_6 = new QGridLayout(this);
+    gridLayout_6->setSpacing(0);
+    gridLayout_6->setObjectName(QString::fromUtf8("gridLayout_6"));
+    gridLayout_6->setContentsMargins(0, 0, 0, 0);
+    leftMenuFrame = new QFrame(this);
+    leftMenuFrame->setObjectName(QString::fromUtf8("leftMenuFrame"));
+    leftMenuFrame->setMinimumSize(QSize(70, 0));
+    leftMenuFrame->setMaximumSize(QSize(70, 16777215));
+    leftMenuFrame->setFrameShape(QFrame::StyledPanel);
+    leftMenuFrame->setFrameShadow(QFrame::Raised);
+    verticalLayout = new QVBoxLayout(leftMenuFrame);
+    verticalLayout->setSpacing(5);
+    verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+    verticalLayout->setContentsMargins(0, 0, 0, 0);
+    pushButton = new QPushButton(leftMenuFrame);
+    pushButton->setObjectName(QString::fromUtf8("pushButton"));
+    pushButton->setMinimumSize(QSize(70, 70));
+    pushButton->setMaximumSize(QSize(70, 70));
+
+    verticalLayout->addWidget(pushButton);
+
+    pushButton_2 = new QPushButton(leftMenuFrame);
+    pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+    pushButton_2->setMinimumSize(QSize(70, 70));
+    pushButton_2->setMaximumSize(QSize(70, 70));
+
+    verticalLayout->addWidget(pushButton_2);
+
+    pushButton_3 = new QPushButton(leftMenuFrame);
+    pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+    pushButton_3->setMinimumSize(QSize(70, 70));
+    pushButton_3->setMaximumSize(QSize(70, 70));
+
+    verticalLayout->addWidget(pushButton_3);
+
+    verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+    verticalLayout->addItem(verticalSpacer);
+
+
+    gridLayout_6->addWidget(leftMenuFrame, 0, 0, 2, 1);
+
+    topBarFrame = new QFrame(this);
+    topBarFrame->setObjectName(QString::fromUtf8("topBarFrame"));
+    topBarFrame->setMinimumSize(QSize(0, 70));
+    topBarFrame->setMaximumSize(QSize(16777215, 70));
+    topBarFrame->setFrameShape(QFrame::StyledPanel);
+    topBarFrame->setFrameShadow(QFrame::Raised);
+    horizontalLayout_4 = new QHBoxLayout(topBarFrame);
+    horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+    label_2 = new QLabel(topBarFrame);
+    label_2->setObjectName(QString::fromUtf8("label_2"));
+
+    horizontalLayout_4->addWidget(label_2);
+
+    pushButton_6 = new QPushButton(topBarFrame);
+    pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
+    pushButton_6->setMinimumSize(QSize(50, 50));
+    pushButton_6->setMaximumSize(QSize(50, 50));
+
+    horizontalLayout_4->addWidget(pushButton_6);
+
+    pushButton_5 = new QPushButton(topBarFrame);
+    pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
+    pushButton_5->setMinimumSize(QSize(50, 50));
+    pushButton_5->setMaximumSize(QSize(50, 50));
+
+    horizontalLayout_4->addWidget(pushButton_5);
+
+
+    gridLayout_6->addWidget(topBarFrame, 0, 1, 1, 1);
+
+    appFrame = new QFrame(this);
+    appFrame->setObjectName(QString::fromUtf8("appFrame"));
+    appFrame->setFrameShape(QFrame::StyledPanel);
+    appFrame->setFrameShadow(QFrame::Raised);
+    gridLayout_2 = new QGridLayout(appFrame);
+    gridLayout_2->setSpacing(0);
+    gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+    gridLayout_2->setContentsMargins(0, 0, 0, 0);
+    stackedWidget = new QStackedWidget(appFrame);
+    stackedWidget->setObjectName(QString::fromUtf8("stackedWidget"));
+    page = new QWidget();
+    page->setObjectName(QString::fromUtf8("page"));
+    gridLayout_3 = new QGridLayout(page);
+    gridLayout_3->setSpacing(0);
+    gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
+    gridLayout_3->setContentsMargins(0, 0, 0, 0);
+    frame_4 = new QFrame(page);
+    frame_4->setObjectName(QString::fromUtf8("frame_4"));
+    frame_4->setFrameShape(QFrame::StyledPanel);
+    frame_4->setFrameShadow(QFrame::Raised);
+    gridLayout = new QGridLayout(frame_4);
+    gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+    frame_2 = new QFrame(frame_4);
+    frame_2->setObjectName(QString::fromUtf8("frame_2"));
+    frame_2->setFrameShape(QFrame::StyledPanel);
+    frame_2->setFrameShadow(QFrame::Raised);
+    horizontalLayout_3 = new QHBoxLayout(frame_2);
+    horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+    label = new QLabel(frame_2);
+    label->setObjectName(QString::fromUtf8("label"));
+
+    horizontalLayout_3->addWidget(label);
+
+
+    gridLayout->addWidget(frame_2, 0, 0, 1, 1);
+
+    tabWidget = new QTabWidget(frame_4);
+    tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+    tab = new QWidget();
+    tab->setObjectName(QString::fromUtf8("tab"));
+    gridLayout_4 = new QGridLayout(tab);
+    gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
+    horizontalLayout_2 = new QHBoxLayout();
+    horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+    pushButton_4 = new QPushButton(tab);
+    pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+    pushButton_4->setMinimumSize(QSize(100, 50));
+
+    horizontalLayout_2->addWidget(pushButton_4);
+
+    frame = new QFrame(tab);
+    frame->setObjectName(QString::fromUtf8("frame"));
+    frame->setFrameShape(QFrame::StyledPanel);
+    frame->setFrameShadow(QFrame::Raised);
+
+    horizontalLayout_2->addWidget(frame);
+
+    groupBox = new QGroupBox(tab);
+    groupBox->setObjectName(QString::fromUtf8("groupBox"));
+
+    horizontalLayout_2->addWidget(groupBox);
+
+
+    gridLayout_4->addLayout(horizontalLayout_2, 0, 0, 1, 2);
+
+    horizontalLayout = new QHBoxLayout();
+    horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+    radioButton = new QRadioButton(tab);
+    radioButton->setObjectName(QString::fromUtf8("radioButton"));
+
+    horizontalLayout->addWidget(radioButton);
+
+    checkBox = new QCheckBox(tab);
+    checkBox->setObjectName(QString::fromUtf8("checkBox"));
+
+    horizontalLayout->addWidget(checkBox);
+
+    comboBox = new QComboBox(tab);
+    comboBox->setObjectName(QString::fromUtf8("comboBox"));
+
+    horizontalLayout->addWidget(comboBox);
+
+
+    gridLayout_4->addLayout(horizontalLayout, 1, 0, 1, 2);
+
+    horizontalLayout_5 = new QHBoxLayout();
+    horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+    label_3 = new QLabel(tab);
+    label_3->setObjectName(QString::fromUtf8("label_3"));
+
+    horizontalLayout_5->addWidget(label_3);
+
+    spinBox = new QSpinBox(tab);
+    spinBox->setObjectName(QString::fromUtf8("spinBox"));
+
+    horizontalLayout_5->addWidget(spinBox);
+
+    horizontalSlider = new QSlider(tab);
+    horizontalSlider->setObjectName(QString::fromUtf8("horizontalSlider"));
+    horizontalSlider->setMaximumSize(QSize(200, 16777215));
+    horizontalSlider->setOrientation(Qt::Horizontal);
+
+    horizontalLayout_5->addWidget(horizontalSlider);
+
+
+    gridLayout_4->addLayout(horizontalLayout_5, 2, 0, 1, 2);
+
+    textEdit = new QTextEdit(tab);
+    textEdit->setObjectName(QString::fromUtf8("textEdit"));
+
+    gridLayout_4->addWidget(textEdit, 3, 0, 1, 1);
+
+    scrollArea = new QScrollArea(tab);
+    scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
+    scrollArea->setWidgetResizable(true);
+    scrollAreaWidgetContents = new QWidget();
+    scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
+    scrollAreaWidgetContents->setGeometry(QRect(0, 0, 308, 1022));
+    verticalLayout_2 = new QVBoxLayout(scrollAreaWidgetContents);
+    verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+    frame_3 = new QFrame(scrollAreaWidgetContents);
+    frame_3->setObjectName(QString::fromUtf8("frame_3"));
+    frame_3->setMinimumSize(QSize(0, 1000));
+    frame_3->setFrameShape(QFrame::StyledPanel);
+    frame_3->setFrameShadow(QFrame::Raised);
+
+    verticalLayout_2->addWidget(frame_3);
+
+    scrollArea->setWidget(scrollAreaWidgetContents);
+
+    gridLayout_4->addWidget(scrollArea, 3, 1, 1, 1);
+
+    tabWidget->addTab(tab, QString());
+    tab_2 = new QWidget();
+    tab_2->setObjectName(QString::fromUtf8("tab_2"));
+    gridLayout_5 = new QGridLayout(tab_2);
+    gridLayout_5->setObjectName(QString::fromUtf8("gridLayout_5"));
+    tableWidget = new QTableWidget(tab_2);
+    if (tableWidget->columnCount() < 12)
+        tableWidget->setColumnCount(12);
+    QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+    tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
+    QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+    tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+    QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+    tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+    QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+    tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+    QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
+    tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
+    QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
+    tableWidget->setHorizontalHeaderItem(5, __qtablewidgetitem5);
+    QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
+    tableWidget->setHorizontalHeaderItem(6, __qtablewidgetitem6);
+    QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+    tableWidget->setHorizontalHeaderItem(7, __qtablewidgetitem7);
+    QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
+    tableWidget->setHorizontalHeaderItem(8, __qtablewidgetitem8);
+    QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
+    tableWidget->setHorizontalHeaderItem(9, __qtablewidgetitem9);
+    QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
+    tableWidget->setHorizontalHeaderItem(10, __qtablewidgetitem10);
+    QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
+    tableWidget->setHorizontalHeaderItem(11, __qtablewidgetitem11);
+    if (tableWidget->rowCount() < 9)
+        tableWidget->setRowCount(9);
+    QTableWidgetItem *__qtablewidgetitem12 = new QTableWidgetItem();
+    tableWidget->setVerticalHeaderItem(0, __qtablewidgetitem12);
+    QTableWidgetItem *__qtablewidgetitem13 = new QTableWidgetItem();
+    tableWidget->setVerticalHeaderItem(1, __qtablewidgetitem13);
+    QTableWidgetItem *__qtablewidgetitem14 = new QTableWidgetItem();
+    tableWidget->setVerticalHeaderItem(2, __qtablewidgetitem14);
+    QTableWidgetItem *__qtablewidgetitem15 = new QTableWidgetItem();
+    tableWidget->setVerticalHeaderItem(3, __qtablewidgetitem15);
+    QTableWidgetItem *__qtablewidgetitem16 = new QTableWidgetItem();
+    tableWidget->setVerticalHeaderItem(4, __qtablewidgetitem16);
+    QTableWidgetItem *__qtablewidgetitem17 = new QTableWidgetItem();
+    tableWidget->setVerticalHeaderItem(5, __qtablewidgetitem17);
+    QTableWidgetItem *__qtablewidgetitem18 = new QTableWidgetItem();
+    tableWidget->setVerticalHeaderItem(6, __qtablewidgetitem18);
+    QTableWidgetItem *__qtablewidgetitem19 = new QTableWidgetItem();
+    tableWidget->setVerticalHeaderItem(7, __qtablewidgetitem19);
+    QTableWidgetItem *__qtablewidgetitem20 = new QTableWidgetItem();
+    tableWidget->setVerticalHeaderItem(8, __qtablewidgetitem20);
+    tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
+
+    gridLayout_5->addWidget(tableWidget, 0, 0, 1, 1);
+
+    tabWidget->addTab(tab_2, QString());
+
+    gridLayout->addWidget(tabWidget, 1, 0, 1, 1);
+
+
+    gridLayout_3->addWidget(frame_4, 1, 0, 1, 1);
+
+    stackedWidget->addWidget(page);
+    page_2 = new QWidget();
+    page_2->setObjectName(QString::fromUtf8("page_2"));
+    stackedWidget->addWidget(page_2);
+
+    gridLayout_2->addWidget(stackedWidget, 0, 0, 1, 1);
+
+
+    gridLayout_6->addWidget(appFrame, 1, 1, 1, 1);
+
+
+    stackedWidget->setCurrentIndex(0);
+    tabWidget->setCurrentIndex(0);
+
+    parent->setWindowTitle(QCoreApplication::translate("centralWidget", "Form", nullptr));
+    pushButton->setText(QString());
+    pushButton_2->setText(QString());
+    pushButton_3->setText(QString());
+    label_2->setText(QCoreApplication::translate("centralWidget", "Name", nullptr));
+    pushButton_6->setText(QString());
+    pushButton_5->setText(QString());
+    label->setText(QCoreApplication::translate("centralWidget", "Page", nullptr));
+    pushButton_4->setText(QCoreApplication::translate("centralWidget", "PushButton", nullptr));
+    groupBox->setTitle(QCoreApplication::translate("centralWidget", "GroupBox", nullptr));
+    radioButton->setText(QCoreApplication::translate("centralWidget", "RadioButton", nullptr));
+    checkBox->setText(QCoreApplication::translate("centralWidget", "CheckBox", nullptr));
+    label_3->setText(QCoreApplication::translate("centralWidget", "TextLabel", nullptr));
+    tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("centralWidget", "Tab 1", nullptr));
+    QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
+    ___qtablewidgetitem->setText(QCoreApplication::translate("centralWidget", "New Column", nullptr));
+    QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
+    ___qtablewidgetitem1->setText(QCoreApplication::translate("centralWidget", "New Column", nullptr));
+    QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
+    ___qtablewidgetitem2->setText(QCoreApplication::translate("centralWidget", "New Column", nullptr));
+    QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
+    ___qtablewidgetitem3->setText(QCoreApplication::translate("centralWidget", "New Column", nullptr));
+    QTableWidgetItem *___qtablewidgetitem4 = tableWidget->horizontalHeaderItem(4);
+    ___qtablewidgetitem4->setText(QCoreApplication::translate("centralWidget", "New Column", nullptr));
+    QTableWidgetItem *___qtablewidgetitem5 = tableWidget->horizontalHeaderItem(5);
+    ___qtablewidgetitem5->setText(QCoreApplication::translate("centralWidget", "New Column", nullptr));
+    QTableWidgetItem *___qtablewidgetitem6 = tableWidget->horizontalHeaderItem(6);
+    ___qtablewidgetitem6->setText(QCoreApplication::translate("centralWidget", "New Column", nullptr));
+    QTableWidgetItem *___qtablewidgetitem7 = tableWidget->horizontalHeaderItem(7);
+    ___qtablewidgetitem7->setText(QCoreApplication::translate("centralWidget", "New Column", nullptr));
+    QTableWidgetItem *___qtablewidgetitem8 = tableWidget->horizontalHeaderItem(8);
+    ___qtablewidgetitem8->setText(QCoreApplication::translate("centralWidget", "New Column", nullptr));
+    QTableWidgetItem *___qtablewidgetitem9 = tableWidget->horizontalHeaderItem(9);
+    ___qtablewidgetitem9->setText(QCoreApplication::translate("centralWidget", "New Column", nullptr));
+    QTableWidgetItem *___qtablewidgetitem10 = tableWidget->horizontalHeaderItem(10);
+    ___qtablewidgetitem10->setText(QCoreApplication::translate("centralWidget", "New Column", nullptr));
+    QTableWidgetItem *___qtablewidgetitem11 = tableWidget->horizontalHeaderItem(11);
+    ___qtablewidgetitem11->setText(QCoreApplication::translate("centralWidget", "New Column", nullptr));
+    QTableWidgetItem *___qtablewidgetitem12 = tableWidget->verticalHeaderItem(0);
+    ___qtablewidgetitem12->setText(QCoreApplication::translate("centralWidget", "New Row", nullptr));
+    QTableWidgetItem *___qtablewidgetitem13 = tableWidget->verticalHeaderItem(1);
+    ___qtablewidgetitem13->setText(QCoreApplication::translate("centralWidget", "New Row", nullptr));
+    QTableWidgetItem *___qtablewidgetitem14 = tableWidget->verticalHeaderItem(2);
+    ___qtablewidgetitem14->setText(QCoreApplication::translate("centralWidget", "New Row", nullptr));
+    QTableWidgetItem *___qtablewidgetitem15 = tableWidget->verticalHeaderItem(3);
+    ___qtablewidgetitem15->setText(QCoreApplication::translate("centralWidget", "New Row", nullptr));
+    QTableWidgetItem *___qtablewidgetitem16 = tableWidget->verticalHeaderItem(4);
+    ___qtablewidgetitem16->setText(QCoreApplication::translate("centralWidget", "New Row", nullptr));
+    QTableWidgetItem *___qtablewidgetitem17 = tableWidget->verticalHeaderItem(5);
+    ___qtablewidgetitem17->setText(QCoreApplication::translate("centralWidget", "New Row", nullptr));
+    QTableWidgetItem *___qtablewidgetitem18 = tableWidget->verticalHeaderItem(6);
+    ___qtablewidgetitem18->setText(QCoreApplication::translate("centralWidget", "New Row", nullptr));
+    QTableWidgetItem *___qtablewidgetitem19 = tableWidget->verticalHeaderItem(7);
+    ___qtablewidgetitem19->setText(QCoreApplication::translate("centralWidget", "New Row", nullptr));
+    QTableWidgetItem *___qtablewidgetitem20 = tableWidget->verticalHeaderItem(8);
+    ___qtablewidgetitem20->setText(QCoreApplication::translate("centralWidget", "New Row", nullptr));
+    tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("centralWidget", "Tab 2", nullptr));
+
+       setLayout(gridLayout);
+}
+
+CColorPallete::~CColorPallete()
+{
+
+}

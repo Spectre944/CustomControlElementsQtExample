@@ -74,6 +74,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     cPopup = new CPopupNotification(ui->centralwidget);
 
+    cColor = new CColorPallete(ui->centralwidget);
+
 
 
 
@@ -184,5 +186,6 @@ void MainWindow::on_pushButton_4_clicked()
     int y = ui->pushButton->cursor().pos().y();
 
     cPopup->exec(QPoint(x,y));
+    cColor->show();
 }
 
