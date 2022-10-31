@@ -197,6 +197,8 @@ CMessageFrame::CMessageFrame(QWidget *parent)
     msgFrame->setFrameShadow(QFrame::Raised);
     gridLayout = new QGridLayout(msgFrame);
     gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+
+    //Checkboxes for sorting
     showMsg = new QCheckBox("\n  Повідомлення  \n", msgFrame);
     showMsg->setObjectName(QString::fromUtf8("checkBox"));
 
@@ -212,8 +214,10 @@ CMessageFrame::CMessageFrame(QWidget *parent)
 
     gridLayout->addWidget(showLines, 0, 2, 1, 1);
 
+
     scrollArea = new QScrollArea(msgFrame);
     scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
+    scrollArea->setMinimumSize(QSize(400, 600));
     scrollArea->setWidgetResizable(true);
     scrollAreaContents = new QWidget();
     scrollAreaContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_2"));
@@ -228,6 +232,12 @@ CMessageFrame::CMessageFrame(QWidget *parent)
 
 
     vLayoutMain->addWidget(msgFrame);
+
+    //add vSpacer to push all messages to top
+    verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    vLayoutMsg->addItem(verticalSpacer);
+
+
 
 /*
     setWindowFlag(Qt::Popup, true);
@@ -380,7 +390,8 @@ void CMessageFrame::hideEvent(QHideEvent *event)
 
 void CMessageFrame::addMsg(CMessageItem *msg)
 {
-    vLayoutMsg->addWidget(msg);
+    //vLayoutMsg->addWidget(msg);
+    vLayoutMsg->insertWidget(0, msg);
 }
 
 //--------------------------------------------------------------------------------------------------------
@@ -405,6 +416,7 @@ CMessageItem::CMessageItem(QWidget *parent, QString author, QString txt, QString
 
     mainFrame = new QFrame(parent);
     mainFrame->setMinimumHeight(100);
+    mainFrame->setMaximumHeight(100);
 
     mainGridLayout = new QGridLayout(mainFrame);
     mainGridLayout->setSpacing(5);
@@ -889,4 +901,99 @@ CColorPallete::CColorPallete(QWidget *parent)
 CColorPallete::~CColorPallete()
 {
 
+}
+
+CLoadingScreen::CLoadingScreen(QWidget *parent)
+{
+
+    this->setObjectName("customFrameWindowMsg");
+    this->setStyleSheet(parent->styleSheet());
+
+    //setWindowFlag(Qt::Popup, true);
+
+    //For adjust size window
+    QScreen *screen = QGuiApplication::primaryScreen();
+    window_rect = screen->availableGeometry();
+    window_height = window_rect.height();
+
+    this->setMinimumSize(QSize(940, 400));
+
+
+    this->setLayoutDirection(Qt::LeftToRight);
+    this->setStyleSheet(QString::fromUtf8("background-image: url(:/Sun.jpg);"));
+
+    gridLayout = new QGridLayout(parent);
+    gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+    gridLayout->setHorizontalSpacing(0);
+    gridLayout->setVerticalSpacing(0);
+    gridLayout->setContentsMargins(0, 0, 0, 0);
+
+    labelInfo = new QLabel(parent);
+    labelInfo->setObjectName(QString::fromUtf8("labelIco"));
+    QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    sizePolicy.setHorizontalStretch(0);
+    sizePolicy.setVerticalStretch(0);
+    sizePolicy.setHeightForWidth(labelInfo->sizePolicy().hasHeightForWidth());
+    labelInfo->setSizePolicy(sizePolicy);
+    labelInfo->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+                                              "font: 16pt \"Segoe UI\";"));
+    labelInfo->setAlignment(Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing);
+    labelInfo->setText("...Завантаження");
+
+    gridLayout->addWidget(labelInfo, 0, 0, 1, 1);
+
+
+
+    progressBar = new QProgressBar(parent);
+    progressBar->setObjectName(QString::fromUtf8("progressBar"));
+    progressBar->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 0);"));
+    progressBar->setValue(24);
+
+    gridLayout->addWidget(progressBar, 2, 0, 1, 1);
+
+
+    //set main layout to form window
+    setLayout(gridLayout);
+}
+
+CLoadingScreen::~CLoadingScreen()
+{
+
+}
+
+void CLoadingScreen::exec(QPoint pos)
+{
+    if (pos == QPoint(-1,-1))
+         pos = QCursor::pos();
+     QPoint originPos = pos; // 不包含像素偏移的原始点
+     gridLayout->setEnabled(true);
+     gridLayout->activate(); // 先调整所有控件大小
+     this->adjustSize();
+
+     // setAttribute(Qt::WA_DontShowOnScreen); // 会触发 setMouseGrabEnabled 错误
+     // show();
+     // hide(); // 直接显示吧
+     // setAttribute(Qt::WA_DontShowOnScreen, false);
+
+     int x = pos.x() + 1;
+     int y = pos.y() + 1;
+     int w = width() + 1;
+     int h = height() + 1;
+     QRect avai = window_rect; // 屏幕大小
+
+     // 如果超过范围，则调整位置
+     if (x + w > avai.right())
+         x = avai.right() - w;
+     if (y + h > avai.bottom())
+         y = avai.bottom() - h;
+     if (x >= w && pos.x() + w > avai.right())
+         x = originPos.x() - w;
+     if (y >= h && pos.y() + h > avai.bottom())
+         y = originPos.y() - h;
+
+     // 移动窗口
+     move(QPoint(x, y));
+
+     QWidget::show();
+     setFocus();
 }

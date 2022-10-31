@@ -76,8 +76,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     cColor = new CColorPallete(ui->centralwidget);
 
-
-
+    cLoading = new CLoadingScreen(ui->centralwidget);
 
 }
 
@@ -187,5 +186,11 @@ void MainWindow::on_pushButton_4_clicked()
 
     cPopup->exec(QPoint(x,y));
     cColor->show();
+}
+
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    cLoading->exec();
 }
 

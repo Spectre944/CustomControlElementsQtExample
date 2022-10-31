@@ -39,6 +39,7 @@
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include <QtWidgets/QProgressBar>>
 
 #include <QDebug>
 
@@ -149,6 +150,7 @@ private:
     QLabel *label;
     QLabel *label_2;
     QLabel *label_3;
+    QSpacerItem *verticalSpacer;
 
 
 //    QFrame *msgFrame;
@@ -299,6 +301,34 @@ public:
 
 
 
+
+};
+
+class CLoadingScreen : public QWidget{
+
+    Q_OBJECT
+
+public:
+
+    CLoadingScreen(QWidget *parent = nullptr);
+    ~CLoadingScreen() override;
+
+    void exec(QPoint pos = QPoint(-1, -1));
+    void exec(QRect expt, bool vertical = false, QPoint pos = QPoint(-1, -1));
+
+signals:
+
+
+public:
+
+    QGridLayout *gridLayout;
+    QLabel *labelInfo;
+    QProgressBar *progressBar;
+
+
+
+    QRect window_rect;
+    int window_height = 0; // 窗口高度，每次打开都更新一次
 
 };
 
