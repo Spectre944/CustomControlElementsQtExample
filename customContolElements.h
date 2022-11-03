@@ -40,6 +40,7 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QProgressBar>>
+#include <QColorDialog>
 
 #include <QDebug>
 
@@ -332,6 +333,61 @@ public:
 
 };
 
+class CColorPicker: public QWidget{
+
+    Q_OBJECT
+
+public:
+
+    CColorPicker(QWidget *parent = nullptr);
+    ~CColorPicker() override;
+
+    QRect window_rect;
+    int window_height = 0; // 窗口高度，每次打开都更新一次
+
+    void pickMain();
+    void pickAdd();
+    void pickSome();
+    QString retStyle();
+
+    void exec(QPoint pos = QPoint(-1, -1));
+    void exec(QRect expt, bool vertical = false, QPoint pos = QPoint(-1, -1));
+
+
+signals:
+
+
+public:
+
+    QColorDialog *colorDialog;
+
+    QColor mainColor;
+    QColor addColor;
+    QColor someColor;
+
+    QWidget *centralwidget;
+    QGridLayout *gridLayout;
+    QFrame *frameAC;
+    QFrame *frameSCL;
+    QPushButton *pushButtonMainColor;
+    QFrame *frameMC;
+    QFrame *frameACD;
+    QFrame *frameACL;
+    QTextEdit *textEdit;
+    QFrame *frameSC;
+    QPushButton *pushButtonSomeColor;
+    QFrame *frameMCD;
+    QPushButton *pushButtonAddColor;
+    QFrame *frameMCL;
+    QFrame *frameSCD;
+    QPushButton *pushButtonApply;
+    QMenuBar *menubar;
+    //QStatusBar *statusbar;
+
+
+
+
+};
 
 /*
 

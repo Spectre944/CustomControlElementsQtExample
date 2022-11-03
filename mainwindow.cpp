@@ -78,6 +78,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     cLoading = new CLoadingScreen(ui->centralwidget);
 
+    cColorPicker = new CColorPicker(ui->centralwidget);
+
 }
 
 MainWindow::~MainWindow()
@@ -192,5 +194,11 @@ void MainWindow::on_pushButton_4_clicked()
 void MainWindow::on_pushButton_5_clicked()
 {
     cLoading->exec();
+}
+
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    cColorPicker->exec();
 }
 

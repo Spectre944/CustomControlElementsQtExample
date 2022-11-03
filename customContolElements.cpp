@@ -997,3 +997,276 @@ void CLoadingScreen::exec(QPoint pos)
      QWidget::show();
      setFocus();
 }
+
+CColorPicker::CColorPicker(QWidget *parent)
+{
+
+
+
+    if (parent->objectName().isEmpty())
+        parent->setObjectName(QString::fromUtf8("centralWidget"));
+
+    this->resize(971, 722);
+
+    QScreen *screen = QGuiApplication::primaryScreen();
+    window_rect = screen->availableGeometry();
+    window_height = window_rect.height();
+
+
+    centralwidget = new QWidget(parent);
+    centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+    gridLayout = new QGridLayout(centralwidget);
+    gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+    frameAC = new QFrame(centralwidget);
+    frameAC->setObjectName(QString::fromUtf8("frameAC"));
+    frameAC->setFrameShape(QFrame::StyledPanel);
+    frameAC->setFrameShadow(QFrame::Raised);
+
+    gridLayout->addWidget(frameAC, 1, 1, 1, 1);
+
+    frameSCL = new QFrame(centralwidget);
+    frameSCL->setObjectName(QString::fromUtf8("frameSCL"));
+    frameSCL->setFrameShape(QFrame::StyledPanel);
+    frameSCL->setFrameShadow(QFrame::Raised);
+
+    gridLayout->addWidget(frameSCL, 3, 2, 1, 1);
+
+    pushButtonMainColor = new QPushButton(centralwidget);
+    pushButtonMainColor->setObjectName(QString::fromUtf8("pushButtonMainColor"));
+
+    gridLayout->addWidget(pushButtonMainColor, 0, 0, 1, 1);
+
+    frameMC = new QFrame(centralwidget);
+    frameMC->setObjectName(QString::fromUtf8("frameMC"));
+    frameMC->setFrameShape(QFrame::StyledPanel);
+    frameMC->setFrameShadow(QFrame::Raised);
+
+    gridLayout->addWidget(frameMC, 1, 0, 1, 1);
+
+    frameACD = new QFrame(centralwidget);
+    frameACD->setObjectName(QString::fromUtf8("frameACD"));
+    frameACD->setFrameShape(QFrame::StyledPanel);
+    frameACD->setFrameShadow(QFrame::Raised);
+
+    gridLayout->addWidget(frameACD, 2, 1, 1, 1);
+
+    frameACL = new QFrame(centralwidget);
+    frameACL->setObjectName(QString::fromUtf8("frameACL"));
+    frameACL->setFrameShape(QFrame::StyledPanel);
+    frameACL->setFrameShadow(QFrame::Raised);
+
+    gridLayout->addWidget(frameACL, 3, 1, 1, 1);
+
+    textEdit = new QTextEdit(centralwidget);
+    textEdit->setObjectName(QString::fromUtf8("textEdit"));
+    QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Ignored);
+    sizePolicy.setHorizontalStretch(0);
+    sizePolicy.setVerticalStretch(0);
+    sizePolicy.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
+    textEdit->setSizePolicy(sizePolicy);
+
+    gridLayout->addWidget(textEdit, 5, 0, 1, 3);
+
+    frameSC = new QFrame(centralwidget);
+    frameSC->setObjectName(QString::fromUtf8("frameSC"));
+    frameSC->setFrameShape(QFrame::StyledPanel);
+    frameSC->setFrameShadow(QFrame::Raised);
+
+    gridLayout->addWidget(frameSC, 1, 2, 1, 1);
+
+    pushButtonSomeColor = new QPushButton(centralwidget);
+    pushButtonSomeColor->setObjectName(QString::fromUtf8("pushButtonSomeColor"));
+
+    gridLayout->addWidget(pushButtonSomeColor, 0, 2, 1, 1);
+
+    frameMCD = new QFrame(centralwidget);
+    frameMCD->setObjectName(QString::fromUtf8("frameMCD"));
+    frameMCD->setFrameShape(QFrame::StyledPanel);
+    frameMCD->setFrameShadow(QFrame::Raised);
+
+    gridLayout->addWidget(frameMCD, 2, 0, 1, 1);
+
+    pushButtonAddColor = new QPushButton(centralwidget);
+    pushButtonAddColor->setObjectName(QString::fromUtf8("pushButtonAddColor"));
+
+    gridLayout->addWidget(pushButtonAddColor, 0, 1, 1, 1);
+
+    frameMCL = new QFrame(centralwidget);
+    frameMCL->setObjectName(QString::fromUtf8("frameMCL"));
+    frameMCL->setFrameShape(QFrame::StyledPanel);
+    frameMCL->setFrameShadow(QFrame::Raised);
+
+    gridLayout->addWidget(frameMCL, 3, 0, 1, 1);
+
+    frameSCD = new QFrame(centralwidget);
+    frameSCD->setObjectName(QString::fromUtf8("frameSCD"));
+    frameSCD->setFrameShape(QFrame::StyledPanel);
+    frameSCD->setFrameShadow(QFrame::Raised);
+
+    gridLayout->addWidget(frameSCD, 2, 2, 1, 1);
+
+    pushButtonApply = new QPushButton(centralwidget);
+    pushButtonApply->setObjectName(QString::fromUtf8("pushButtonApply"));
+
+    gridLayout->addWidget(pushButtonApply, 4, 0, 1, 1);
+
+    connect(pushButtonMainColor, &QPushButton::clicked, this, &CColorPicker::pickMain);
+    connect(pushButtonAddColor, &QPushButton::clicked, this, &CColorPicker::pickAdd);
+    connect(pushButtonSomeColor, &QPushButton::clicked, this, &CColorPicker::pickSome);
+    connect(pushButtonApply, &QPushButton::clicked, this, &CColorPicker::retStyle);
+
+
+    setLayout(gridLayout);
+
+//        MainWindow->setCentralWidget(centralwidget);
+//        menubar = new QMenuBar(MainWindow);
+//        menubar->setObjectName(QString::fromUtf8("menubar"));
+//        menubar->setGeometry(QRect(0, 0, 971, 21));
+//        MainWindow->setMenuBar(menubar);
+//        statusbar = new QStatusBar(MainWindow);
+//        statusbar->setObjectName(QString::fromUtf8("statusbar"));
+//        MainWindow->setStatusBar(statusbar);
+}
+
+CColorPicker::~CColorPicker()
+{
+
+}
+
+void CColorPicker::pickMain()
+{
+    mainColor = colorDialog->getColor();
+
+    frameMC->setStyleSheet("background-color: "+QVariant(mainColor).toString() + ";");
+    frameMCD->setStyleSheet("background-color: "+QVariant(mainColor.darker(200)).toString() + ";");
+    frameMCL->setStyleSheet("background-color: "+QVariant(mainColor.lighter(150)).toString() + ";");
+}
+
+void CColorPicker::pickAdd()
+{
+    addColor = colorDialog->getColor();
+
+    frameAC->setStyleSheet("background-color: "+QVariant(addColor).toString() + ";");
+    frameACD->setStyleSheet("background-color: "+QVariant(addColor.darker(200)).toString() + ";");
+    frameACL->setStyleSheet("background-color: "+QVariant(addColor.lighter(150)).toString() + ";");
+}
+
+void CColorPicker::pickSome()
+{
+    someColor = colorDialog->getColor();
+
+    frameSC->setStyleSheet("background-color: "+QVariant(someColor).toString() + ";");
+    frameSCD->setStyleSheet("background-color: "+QVariant(someColor.darker(200)).toString() + ";");
+    frameSCL->setStyleSheet("background-color: "+QVariant(someColor.lighter(150)).toString() + ";");
+}
+
+QString CColorPicker::retStyle()
+{
+    QString tmp;
+    tmp.clear();
+    tmp.append("/*QWidget*/ \n"
+             "QWidget{ color: white; font-size: 12px; } \n"
+             "#centralwidget{	background-color: "+QVariant(mainColor).toString()+";	} \n"
+             "/*StackedWidget*/ \n"
+             "#stackedWidget .QFrame{	background-color: "+QVariant(mainColor.darker(150)).toString()+"; border-radius: 6px; border: 1px solid gray; color: #ffffff; } \n"
+             "/*APP FRAME*/ \n"
+             "#appFrame .QPushButton, #topBarFrame .QPushButton { background-color: qlineargradient(spread:reflect, x1:0, y1:1, x2:0, y2:0.33, stop:0 "+QVariant(addColor).toString()+", stop:0.933845 "+QVariant(addColor.darker(150)).toString()+"); "
+             " color: #ffffff;	text-align: center;	border-radius: 5px;	border: 1px solid black; } \n"
+             "#appFrame .QPushButton:hover, #topBarFrame .QPushButton:hover		{ background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 "+QVariant(addColor.darker(150)).toString()+", stop: 0.1 "+QVariant(addColor).toString()+", stop: 0.5 "+QVariant(addColor.darker(200)).toString()+", stop: 0.9 "+QVariant(addColor).toString()+", stop: 1 "+QVariant(addColor).toString()+"); } \n"
+             "#appFrame .QPushButton:pressed, #topBarFrame .QPushButton:pressed	{ padding-left: 2px;	padding-top: 5px; "
+             "	background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 "+QVariant(addColor).toString()+", stop: 0.1 "+QVariant(addColor).toString()+", stop: 0.5 "+QVariant(addColor).toString()+", stop: 0.9 "+QVariant(addColor).toString()+", stop: 1 "+QVariant(addColor).toString()+"); } \n"
+             "/*LEFT MENU*/ \n"
+             "#leftMenuFrame						{ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 "+QVariant(mainColor.darker(150)).toString()+" , stop:1 "+QVariant(mainColor).toString()+"); }	\n"
+             "#leftMenuFrame .QPushButton { background-color: "+QVariant(mainColor.darker(150)).toString()+"; color: #ffffff;	text-align: left;	padding-left: 15px;  	border-radius: 6px; border: none;} \n"
+             "#leftMenuFrame .QPushButton:hover	{ border-right: 25px solid transparent;	background-color: "+QVariant(mainColor.lighter(135)).toString()+"; } \n"
+             "#leftMenuFrame .QPushButton:focus 	{ border-right: 25px solid transparent;	background-color: "+QVariant(mainColor.lighter(135)).toString()+"; } \n"
+             "#leftMenuFrame .QPushButton:checked { border-right: 25px solid transparent;	background-color: "+QVariant(mainColor.lighter(135)).toString()+"; } \n"
+             "/*Dont draw border in hide menu button*/ \n"
+             "#leftMenuFrame .QPushButton#pushButton_menu:hover{ border-right: 0px; } \n"
+             "/*TOB BAR STYLE*/ \n"
+             "#topBarFrame					{ background-color: qlineargradient(spread:reflect, x1:0.605, y1:0, x2:0.538, y2:1, stop:0 "+QVariant(mainColor.darker(150)).toString()+", stop:1 "+QVariant(mainColor).toString()+"); } \n"
+             "/*TabWidget*/ \n"
+             "QTabWidget::pane 				{ border-radius: 6px; border-top-left-radius: 0px;  border: 1px solid gray;  top:-1px;   background-color: "+QVariant(mainColor).toString()+";  color: white; } \n"
+             "QTabBar::tab 				{ background-color: "+QVariant(mainColor).toString()+"; border-radius: 6px; border-bottom-right-radius: 0px;  border-bottom-left-radius: 0px;  border: 1px solid gray; padding: 10px; } \n"
+             "QTabBar::tab:selected 			{ background-color: "+QVariant(mainColor).toString()+";  margin-bottom: -1px; } \n"
+             "/*QTableWidget*/ \n"
+             "QTableWidget 			{ background-color: transparent; border-radius: 5px; gridline-color: "+QVariant(mainColor).toString()+";	border-bottom: 1px solid "+QVariant(mainColor).toString()+";} \n"
+             "QTableView::item:alternate 	{ background-color: "+QVariant(mainColor).toString()+"; } \n"
+             "QTableWidget::item::selected	{ background-color: "+QVariant(mainColor).toString()+"; color: white; } \n"
+             "QTableCornerButton::section 	{ background-color: "+QVariant(mainColor).toString()+"; } \n"
+             "QHeaderView::section		{ background-color: "+QVariant(mainColor).toString()+"; border: 1px solid "+QVariant(mainColor).toString()+"; padding: 3px; } \n"
+             "QScrollBar:horizontal, QScrollBar:vertical { background: "+QVariant(mainColor ).toString()+";  height: 15px; width: 15px;} \n"
+             "QScrollBar::handle:horizontal, QScrollBar::handle:vertical	{ background: "+QVariant(mainColor).toString()+"; min-width: 25px; min-height: 25px; border-radius: 4px; } \n"
+             "QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal, QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical{ background: none;} \n"
+             "/*PROGRESS BAR STYLE*/ \n"
+             "QProgressBar 		{ text-align: center; font-size: 12px;	color: #ffffff;	background-color: "+QVariant(mainColor).toString()+"; border: 1px solid black; border-radius: 4px; } \n"
+             "QProgressBar::chunk { background-color: "+QVariant(mainColor).toString()+"; border-radius: 4px; margin: 0.25px; } \n"
+             "/*SPIN BOX*/ \n"
+             "QTextEdit, QLineEdit, QListView, QComboBox, QSpinBox, QDoubleSpinBox, QDateTimeEdit{ background-color: "+QVariant(mainColor).toString()+"; selection-background-color: "+QVariant(mainColor).toString()+"; border-radius: 4px; } \n"
+             "QTextEdit:focus, QLineEdit:focus, QListView:focus, QComboBox:focus, QSpinBox:focus, QDoubleSpinBox:focus, QDateTimeEdit:focus{ background-color: "+QVariant(mainColor).toString()+"; border-radius: 4px; border: 2px solid lightgray; } \n"
+             "QCheckBox 		   { margin: 5px 0px 5px 10px; color:#fff; } \n"
+             "QCheckBox::hover 		   { border-left:3px solid  "+QVariant(mainColor).toString()+"; background-color: "+QVariant(mainColor).toString()+"; } \n"
+             "QCheckBox::item 		   { spacing: 3px; padding: 10px 85px 10px 20px; background: transparent; } \n"
+             "QCheckBox::item:selected 	   { background-color: "+QVariant(mainColor).toString()+"; border-left:3px solid  "+QVariant(mainColor).toString()+";}"
+             "QCheckBox::indicator         { border: 3px solid rgb(52, 59, 72); width: 15px;	height: 15px; border-radius: 10px; background: rgb(44, 49, 60); }"
+             "QCheckBox::indicator:hover   { border: 3px solid rgb(58, 66, 81); }"
+             "QCheckBox::indicator:checked { background: 3px solid rgb(52, 59, 72); border: 3px solid rgb(52, 59, 72); background-image: url(:/images/cil-check-alt.png); }"
+             "QTextBrowser, QScrollArea { background-color: "+QVariant(mainColor).toString()+"; border-radius: 4px; border: 1px solid lightgray; } \n"
+             "QAbstractScrollArea #samScrAreaCont, #recScrAreaCont, #repScrAreaCont { background-color: transparent; border: 0px; } \n"
+             "#devScrArea {  background-color: "+QVariant(mainColor).toString()+"; border-radius: 4px; border: 0px; }"
+             "#devScrAreaCont { background-color: "+QVariant(mainColor).toString()+"; border: 0px; } \n"
+             "QMenu 			{ background-color: "+QVariant(mainColor).toString()+"; border-top: none; border-left:none; border-right:none; border-bottom:4px solid "+QVariant(mainColor).toString()+"; color:#fff;; } \n"
+             "QMenu::item 		{ spacing: 3px; /* spacing between menu bar items */  padding: 10px 85px 10px 20px;  background: transparent; } \n"
+             "QMenu::item:selected 	{ background-color: "+QVariant(mainColor).toString()+"; border-left:3px solid  "+QVariant(mainColor).toString()+"; } \n"
+             "QCalendarWidget QSpinBox { width: 100px;  background-color: "+QVariant(mainColor).toString()+"; } \n"
+             "QCalendarWidget QToolButton {  height: 50px; width: 100px;  icon-size: 30px, 30px; } \n"
+             "QCalendarWidget QWidget { alternate-background-color: "+QVariant(mainColor).toString()+"; } \n"
+             "QCalendarWidget QAbstractItemView:enabled { background-color: "+QVariant(mainColor).toString()+"; } \n"
+             "#customFrameWindow	{ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 "+QVariant(mainColor).toString()+" , stop:1 "+QVariant(mainColor).toString()+"); border-radius: 2px; border: 1px solid gray; color: #ffffff; } \n"
+             "#customFrameWindowMsg	{ background-color: #cccccc; border-radius: 2px; border: 1px solid gray; } \n"
+             "#customFrameWindowMsg .QFrame	{ background-color: "+QVariant(mainColor).toString()+"; border-radius: 6px; border: 1px solid gray; color: #ffffff; } \n"
+
+             "\n\n");
+
+
+    textEdit->document()->setPlainText(tmp);
+
+    return tmp;
+}
+
+void CColorPicker::exec(QPoint pos)
+{
+    if (pos == QPoint(-1,-1))
+         pos = QCursor::pos();
+     QPoint originPos = pos; // 不包含像素偏移的原始点
+     gridLayout->setEnabled(true);
+     gridLayout->activate(); // 先调整所有控件大小
+     this->adjustSize();
+
+     // setAttribute(Qt::WA_DontShowOnScreen); // 会触发 setMouseGrabEnabled 错误
+     // show();
+     // hide(); // 直接显示吧
+     // setAttribute(Qt::WA_DontShowOnScreen, false);
+
+     int x = pos.x() + 1;
+     int y = pos.y() + 1;
+     int w = width() + 1;
+     int h = height() + 1;
+     QRect avai = window_rect; // 屏幕大小
+
+     // 如果超过范围，则调整位置
+     if (x + w > avai.right())
+         x = avai.right() - w;
+     if (y + h > avai.bottom())
+         y = avai.bottom() - h;
+     if (x >= w && pos.x() + w > avai.right())
+         x = originPos.x() - w;
+     if (y >= h && pos.y() + h > avai.bottom())
+         y = originPos.y() - h;
+
+     // 移动窗口
+     move(QPoint(x, y));
+
+     QWidget::show();
+     setFocus();
+}
