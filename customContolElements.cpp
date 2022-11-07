@@ -214,6 +214,8 @@ CMessageFrame::CMessageFrame(QWidget *parent)
 
     gridLayout->addWidget(showLines, 0, 2, 1, 1);
 
+    gridLayout->setMargin(0);
+    gridLayout->setSpacing(0);
 
     scrollArea = new QScrollArea(msgFrame);
     scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
@@ -224,6 +226,7 @@ CMessageFrame::CMessageFrame(QWidget *parent)
     scrollAreaContents->setGeometry(QRect(0, 0, 426, 423));
     vLayoutMsg = new QVBoxLayout(scrollAreaContents);
     vLayoutMsg->setObjectName(QString::fromUtf8("verticalLayout_2"));
+
 
 
     scrollArea->setWidget(scrollAreaContents);
@@ -1001,12 +1004,10 @@ void CLoadingScreen::exec(QPoint pos)
 CColorPicker::CColorPicker(QWidget *parent)
 {
 
+    this->setObjectName("customFrameWindowMsg");
+    this->setStyleSheet(parent->styleSheet());
 
-
-    if (parent->objectName().isEmpty())
-        parent->setObjectName(QString::fromUtf8("centralWidget"));
-
-    this->resize(971, 722);
+    //setWindowFlag(Qt::Popup, true);
 
     QScreen *screen = QGuiApplication::primaryScreen();
     window_rect = screen->availableGeometry();
@@ -1033,6 +1034,7 @@ CColorPicker::CColorPicker(QWidget *parent)
 
     pushButtonMainColor = new QPushButton(centralwidget);
     pushButtonMainColor->setObjectName(QString::fromUtf8("pushButtonMainColor"));
+    pushButtonMainColor->setText("Основний колір");
 
     gridLayout->addWidget(pushButtonMainColor, 0, 0, 1, 1);
 
@@ -1076,6 +1078,7 @@ CColorPicker::CColorPicker(QWidget *parent)
 
     pushButtonSomeColor = new QPushButton(centralwidget);
     pushButtonSomeColor->setObjectName(QString::fromUtf8("pushButtonSomeColor"));
+    pushButtonSomeColor->setText("Додатковий колір");
 
     gridLayout->addWidget(pushButtonSomeColor, 0, 2, 1, 1);
 
@@ -1088,6 +1091,7 @@ CColorPicker::CColorPicker(QWidget *parent)
 
     pushButtonAddColor = new QPushButton(centralwidget);
     pushButtonAddColor->setObjectName(QString::fromUtf8("pushButtonAddColor"));
+    pushButtonSomeColor->setText("Колір для виділення");
 
     gridLayout->addWidget(pushButtonAddColor, 0, 1, 1, 1);
 
@@ -1107,6 +1111,7 @@ CColorPicker::CColorPicker(QWidget *parent)
 
     pushButtonApply = new QPushButton(centralwidget);
     pushButtonApply->setObjectName(QString::fromUtf8("pushButtonApply"));
+    pushButtonSomeColor->setText("Зібрати та вивести");
 
     gridLayout->addWidget(pushButtonApply, 4, 0, 1, 1);
 
@@ -1118,14 +1123,6 @@ CColorPicker::CColorPicker(QWidget *parent)
 
     setLayout(gridLayout);
 
-//        MainWindow->setCentralWidget(centralwidget);
-//        menubar = new QMenuBar(MainWindow);
-//        menubar->setObjectName(QString::fromUtf8("menubar"));
-//        menubar->setGeometry(QRect(0, 0, 971, 21));
-//        MainWindow->setMenuBar(menubar);
-//        statusbar = new QStatusBar(MainWindow);
-//        statusbar->setObjectName(QString::fromUtf8("statusbar"));
-//        MainWindow->setStatusBar(statusbar);
 }
 
 CColorPicker::~CColorPicker()
